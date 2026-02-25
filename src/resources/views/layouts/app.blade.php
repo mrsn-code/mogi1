@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,19 @@
       </div>
       <nav>
         <ul class="header-nav">
+          @guest
           <li class="header-nav__item">
-            <a class="header-nav__link" href="">ログイン</a>
+            <a class="header-nav__link" href="/login">ログイン</a>
           </li>
+          @endguest
+          @auth
+          <li class="header-nav__item">
+            <form class="header-nav__link" action="/logout" method="post">
+              @csrf
+              <button type="submit">ログアウト</button>
+            </form>
+          </li>
+          @endauth
           <li class="header-nav__item">
             <a class="header-nav__link" href="">マイページ</a>
           </li>

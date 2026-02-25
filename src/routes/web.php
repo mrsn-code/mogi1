@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ItemController::class, 'index']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'login']);
+
+Route::get('/profile', function () {
+    return view('items.profile');
+})->middleware('auth');
+
+Route::get('/dashboard', [ItemController::class, 'index'])->middleware('auth');
