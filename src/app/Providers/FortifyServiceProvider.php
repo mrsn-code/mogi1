@@ -17,6 +17,7 @@ use App\Fortify\RegisterResponse as CustomRegisterResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
 use App\Fortify\LoginResponse as CustomLoginResponse;
 
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**

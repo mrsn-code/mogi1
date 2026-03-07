@@ -19,6 +19,11 @@
                     <input type="text" name="email" value="{{old('email')}}">
                 </div>
             </div>
+            <div class="form__error">
+                @error('email')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -29,6 +34,11 @@
                     <input type="password" name="password" value="{{old('password')}}">
                 </div>
             </div>
+            <div class="form__error">
+                @error('password')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit">ログインする</button>
@@ -38,10 +48,4 @@
         <a class="link__button" href="/register">会員登録はこちら</a>
     </div>
 </div>
-@if ($errors->any())
-    <div style="color:red;">
-        {{ $errors->first() }}
-    </div>
-@endif
-
 @endsection

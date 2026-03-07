@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ItemController::class, 'index']);
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
+
 Route::get('/register', [AuthController::class, 'register']);
+// Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'login']);
 
 Route::get('/profile', function () {

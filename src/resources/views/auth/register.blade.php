@@ -19,6 +19,11 @@
                     <input type="text" name="name" value="{{old('name')}}">
                 </div>
             </div>
+            <div class="form__error">
+                @error('name')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -28,6 +33,11 @@
                 <div class="form__input--text">
                     <input type="text" name="email" value="{{old('email')}}">
                 </div>
+            </div>
+            <div class="form__error">
+                @error('email')
+                {{$message}}
+                @enderror
             </div>
         </div>
         <div class="form__group">
@@ -39,6 +49,11 @@
                     <input type="text" name="password" value="{{old('password')}}">
                 </div>
             </div>
+            <div class="form__error">
+                @error('password')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -48,6 +63,11 @@
                 <div class="form__input--text">
                     <input type="text" name="password_confirmation" value="{{old('password_confirmation')}}">
                 </div>
+            </div>
+            <div class="form__error">
+                @error('password_confirmation')
+                {{$message}}
+                @enderror
             </div>
         </div>
         <div class="form__button">
