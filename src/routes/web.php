@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MylistController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +18,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/?tab=mylist', [MyListController::class, 'index'])->name('mylist.index');
+});
 
 Route::get('/register', [AuthController::class, 'register']);
 // Route::post('/register', [AuthController::class, 'register']);
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/profile', function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', [ItemController::class, 'mypage'])->name('mypage');
+});
+
+Route::get('/mypage/profile', function () {
     return view('items.profile');
 })->middleware('auth');
 

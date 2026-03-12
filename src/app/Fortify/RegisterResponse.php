@@ -8,6 +8,6 @@ class RegisterResponse implements RegisterResponseContract
 {
     public function toResponse($request)
     {
-        return redirect('/profile');
+        return redirect('/mypage/profile');
     }
 }
