@@ -22,10 +22,42 @@
 }
 
 .item__price {
-    font-size: 20px;
+    font-size: 32px;
+    margin-top: 10px;
 }
 .item__price--part {
+    font-size: 18px;
+}
+.icons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+    margin-top: 15px;
+}
+.like__field {
+    
+}
+.icon__field--button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+}
+.icon__field--button img {
+    width: 70%;
+    height: 70%;
+}
+.like__field--liked {
+    font-size: 32px;
+    color: red;
+}
+.like__field--notliked {
+    font-size: 32px;
+    color: gray;
+}
+.icon__field--count {
     font-size: 10px;
+    text-align: center;
 }
 
 .purchase__form button {
@@ -36,6 +68,15 @@
     border-radius: 3px;
     padding: 5px;
     font-size: 20px;
+    font-weight: bold;
     margin: 10px 0px;
     cursor: pointer;
+}
+
+.condition__group {
+    display: flex;
+}
+.condition__title {
+    font-weight: bold;
+    margin-right: 20px;
 }

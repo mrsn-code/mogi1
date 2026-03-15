@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function favoriteItems() {
-        return $this->belongsToMany(Item::class, 'favorites')->withTimestamps();
+    public function likedItems() {
+        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
     }
 }

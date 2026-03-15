@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MylistController;
 use App\Http\Controllers\ProfileController;
 
@@ -49,3 +50,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/dashboard', [ItemController::class, 'index'])->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->name('items.like.toggle');
+});

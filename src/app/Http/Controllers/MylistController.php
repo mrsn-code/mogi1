@@ -10,7 +10,7 @@ class MylistController extends Controller
 {
     public function index()
     {
-        $items = Auth::user()->favoriteItems()->latest()->get();
+        $items = Auth::user()->likedItems()->latest()->get();
 
         return view('items.mylist', compact('items'));
     }

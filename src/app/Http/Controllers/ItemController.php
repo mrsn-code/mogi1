@@ -17,7 +17,7 @@ class ItemController extends Controller
         }
 
         if ($tab === 'mylist' && Auth::check()) {
-            $items = Auth::user()->favoriteItems()->latest()->get();
+            $items = Auth::user()->likedItems()->latest()->get();
         } else {
             $items = Item::latest()->get();
         }

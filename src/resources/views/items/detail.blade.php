@@ -13,20 +13,56 @@
         <div class="brand__name">{{$item->brand_name}}</div>
         <div class="item__price">
             <span class="item__price--part">¥</span> {{$item->price}} <span class="item__price--part">(税込)</span></div>
-        <div class="icons"></div>
+        <div class="icons">
+            <div class="like__field">
+                <form action="{{ route('items.like.toggle', $item) }}" method="post">
+                    @csrf
+                    <button class="icon__field--button" type="submit">
+                        @auth
+                            @if($item->isLikedBy(auth()->user()))
+                                <img src="{{asset('images/heartlogo_pink.png')}}">
+                            @else
+                                <img src="{{asset('images/heartlogo_default.png')}}">
+                            @endif
+                        @else
+                            <img src="{{asset('images/heartlogo_default.png')}}">
+                        @endauth
+                    </button>
+                </form>
+                <div class="icon__field--count">
+                {{ $item->likedUsers()->count() }}
+                </div>
+            </div>
+            <div class="balloon__field">
+                <form action="">
+                    @csrf
+                    <button class="icon__field--button" type="submit">
+                        @auth
+                            <img src="{{asset('images/balloonlogo.png')}}">
+                        @else
+                            <img src="{{asset('images/balloonlogo.png')}}">
+                        @endauth
+                    </button>
+                </form>
+                <div class="icon__field--count">
+                    temp
+                <!-- {{ $item->likedUsers()->count() }} -->
+                </div>
+            </div>
+        </div>
         <form class="purchase__form">
             <button>購入手続きへ</button>
         </form>
         <div class="item__description"><h2>商品説明</h2></div>
-        <div class="item__description-detail"></div>
-        <div class="item__information">商品の情報</div>
+        <div class="item__description-detail">{{$item->description}}</div>
+        <div class="item__information"><h2>商品の情報</h2></div>
         <div class="category__group">
             <div class="category__title">カテゴリー</div>
             <div class="category__details"></div>
         </div>
-        <div class="quality__group">
-            <div class="quality__title">商品の状態</div>
-            <div class="quality__details"></div>
+        <div class="condition__group">
+            <div class="condition__title">商品の状態</div>
+            <div class="condition__details">{{$item->condition_label}}</div>
         </div>
         <div class="comment__num">コメント()</div>
         <div class="comment__group">
