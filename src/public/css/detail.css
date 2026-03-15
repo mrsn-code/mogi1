@@ -4,7 +4,7 @@
 
 .image__wrapper {
     width: 50%;
-    margin: 40px;
+    margin: 30px;
     margin-top: 60px;
 }
 .image__wrapper img {
@@ -14,4 +14,28 @@
 
 .caption__wrapper {
     width: 50%;
+    margin: 30px;
+    margin-top: 30px;
+}
+.item__name h1 {
+    margin: 0px;
+}
+
+.item__price {
+    font-size: 20px;
+}
+.item__price--part {
+    font-size: 10px;
+}
+
+.purchase__form button {
+    background: #ea3323;;
+    color: #fff;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 20px;
+    margin: 10px 0px;
+    cursor: pointer;
 }

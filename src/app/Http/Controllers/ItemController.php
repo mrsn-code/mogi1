@@ -34,4 +34,9 @@ class ItemController extends Controller
     {
         return view('items.detail', compact('item'));
     }
+
+    // public function profile() {
+    //     $user = Auth::user();
+    //     return view('items.profile', compact('user'));
+    // }
 }

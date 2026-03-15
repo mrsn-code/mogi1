@@ -9,12 +9,15 @@
         <img src="{{asset($item->item_img)}}">
     </div>
     <div class="caption__wrapper">
-        <div class="item__name">{{$item->item_name}}</div>
+        <div class="item__name"><h1>{{$item->item_name}}</h1></div>
         <div class="brand__name">{{$item->brand_name}}</div>
-        <div class="item__price">{{$item->price}}</div>
+        <div class="item__price">
+            <span class="item__price--part">¥</span> {{$item->price}} <span class="item__price--part">(税込)</span></div>
         <div class="icons"></div>
-        <form class="purchase__form">購入手続きへ</form>
-        <div class="item__description">商品説明</div>
+        <form class="purchase__form">
+            <button>購入手続きへ</button>
+        </form>
+        <div class="item__description"><h2>商品説明</h2></div>
         <div class="item__description-detail"></div>
         <div class="item__information">商品の情報</div>
         <div class="category__group">

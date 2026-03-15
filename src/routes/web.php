@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MylistController;
+use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,8 +35,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ItemController::class, 'mypage'])->name('mypage');
 });
 
-Route::get('/mypage/profile', function () {
-    return view('items.profile');
-})->middleware('auth');
+// Route::get('/mypage/profile', [ItemController::class, 'profile'])->middleware('auth');
+// Route::get('/mypage/profile', function () {
+//     return view('items.profile');
+// })->middleware('auth');
+
+// Route::get('/mypage/profile', [ProfileController::class, 'edit'])->middleware('auth');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 Route::get('/dashboard', [ItemController::class, 'index'])->middleware('auth');

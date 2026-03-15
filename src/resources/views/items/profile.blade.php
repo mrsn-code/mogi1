@@ -8,15 +8,25 @@
     <div class="profile-form__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form" action="/register" method="post">
+
+    @if(session('success'))
+        <div class="alert__success">{{session('success')}}</div>
+    @endif
+
+    <form class="form" action="{{route('profile.update')}}" method="post">
         @csrf
+        @method('PUT')
+        <div class="img__group">
+            <img class="user__img" src="">
+            <button class="select__button">画像を選択する</button>
+        </div>
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">ユーザー名</span>
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="user_name" value="{{old('user_name')}}">
+                    <input type="text" name="name" value="{{old('name', $user->name)}}">
                 </div>
             </div>
         </div>
@@ -26,7 +36,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="zipcode" value="{{old('zipcode')}}">
+                    <input type="text" name="zipcode" value="{{old('zipcode', $user->zipcode)}}">
                 </div>
             </div>
         </div>
@@ -36,7 +46,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="address" value="{{old('address')}}">
+                    <input type="text" name="address" value="{{old('address', $user->address)}}">
                 </div>
             </div>
         </div>
@@ -46,7 +56,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="building" value="{{old('building')}}">
+                    <input type="text" name="building" value="{{old('building', $user->building)}}">
                 </div>
             </div>
         </div>
