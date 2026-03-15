@@ -58,20 +58,24 @@
         <div class="item__information"><h2>商品の情報</h2></div>
         <div class="category__group">
             <div class="category__title">カテゴリー</div>
-            <div class="category__details"></div>
+            <div class="category__details">
+                @foreach ($item->categories as $category)
+                    <div class="category__item">{{ $category->name }}</div>
+                @endforeach
+            </div>
         </div>
         <div class="condition__group">
             <div class="condition__title">商品の状態</div>
             <div class="condition__details">{{$item->condition_label}}</div>
         </div>
-        <div class="comment__num">コメント()</div>
+        <div class="comment__num"><h2>コメント()</h2></div>
         <div class="comment__group">
             <div class="comment__user"></div>
             <div class="comment__content"></div>
         </div>
         <form class="comment__form">
             <div class="comment__title">商品へのコメント</div>
-            <textarea class="comment__area"></textarea>
+            <textarea class="comment__area" rows="8"></textarea>
             <button class="comment__button">コメントを送信する</button>
         </form>
     </div>

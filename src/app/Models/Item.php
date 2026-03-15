@@ -32,4 +32,8 @@ class Item extends Model
 
         return $this->likedUsers()->where('user_id', $user->id)->exists();
     }
+
+    public function categories() {
+        return $this->belongsToMany(Category::class)->withTimestamps();
+    }
 }
