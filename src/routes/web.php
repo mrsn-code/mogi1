@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MylistController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
-Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/?tab=mylist', [MyListController::class, 'index'])->name('mylist.index');
@@ -53,4 +54,18 @@ Route::get('/dashboard', [ItemController::class, 'index'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->name('items.like.toggle');
+});
+
+// Route::middleware('auth')->group(function () {
+//     Route::post('/item/{item}/comments', [CommentController::class, 'store'])
+//         ->name('items.comments.store');
+// });
+Route::middleware('auth')->group(function () {
+    Route::post('/item/{item}/comments', [CommentController::class, 'store'])
+        ->name('items.comments.store');
+});
+
+Route::middleware('auth')->group(function() {
+    Route::get('/purchase/{item}', [ItemController::class, ''])
+        ->name('items.purchase');
 });

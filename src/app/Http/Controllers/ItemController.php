@@ -32,12 +32,13 @@ class ItemController extends Controller
 
     public function show(Item $item)
     {
-        $item->load('categories');
+        $item->load([
+            'categories',
+            'comments.user',
+        ])->loadCount([
+            'likedUsers',
+            'comments',
+        ]);
         return view('items.detail', compact('item'));
     }
-
-    // public function profile() {
-    //     $user = Auth::user();
-    //     return view('items.profile', compact('user'));
-    // }
 }

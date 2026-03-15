@@ -27,6 +27,8 @@
 }
 .items__group {
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 .items__img {
     aspect-ratio: 1 / 1;

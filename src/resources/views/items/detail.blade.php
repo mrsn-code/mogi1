@@ -44,15 +44,12 @@
                         @endauth
                     </button>
                 </form>
-                <div class="icon__field--count">
-                    temp
-                <!-- {{ $item->likedUsers()->count() }} -->
-                </div>
+                <div class="icon__field--count">{{$item->comments_count}}</div>
             </div>
         </div>
-        <form class="purchase__form">
-            <button>購入手続きへ</button>
-        </form>
+        <div class="purchase__link">
+            <a src="" >購入手続きへ</a>
+        </div>
         <div class="item__description"><h2>商品説明</h2></div>
         <div class="item__description-detail">{{$item->description}}</div>
         <div class="item__information"><h2>商品の情報</h2></div>
@@ -68,15 +65,26 @@
             <div class="condition__title">商品の状態</div>
             <div class="condition__details">{{$item->condition_label}}</div>
         </div>
-        <div class="comment__num"><h2>コメント()</h2></div>
+        <div class="comment__num"><h2>コメント({{$item->comments_count}})</h2></div>
+        
+        @foreach($item->comments as $comment)
         <div class="comment__group">
-            <div class="comment__user"></div>
-            <div class="comment__content"></div>
+            <div class="comment__user">
+                <div class="comment__user--icon"><img src=""></div>
+                <div class="comment__user--name">{{$comment->user->name}}</div>
+            </div>
+            <div class="comment__content">{!! nl2br(e($comment->body)) !!}</div>
         </div>
-        <form class="comment__form">
+        @endforeach
+
+        <form class="comment__form" action="{{ route('items.comments.store', $item) }}" method="post">
+            @csrf
             <div class="comment__title">商品へのコメント</div>
-            <textarea class="comment__area" rows="8"></textarea>
-            <button class="comment__button">コメントを送信する</button>
+            <textarea class="comment__area" name="body" rows="8"></textarea>
+            @error('body')
+                <div style="color: red;">{{ $message }}</div>
+            @enderror
+            <button class="comment__button" type="submit">コメントを送信する</button>
         </form>
     </div>
 </div>
