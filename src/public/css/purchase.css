@@ -1,0 +1,77 @@
+.page__wrapper {
+    padding: 50px;
+    display: flex;
+}
+.config__panel {
+    width: 60%;
+}
+.item__detail {
+    display: flex;
+    margin-bottom: 30px;
+}
+.item__img {
+    margin-right: 50px;
+}
+.item__img img{
+    width: 150px;
+    height: auto;
+}
+.item__name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.item__price {
+    font-size: 20px;
+}
+.line {
+    size: 2px;
+}
+.shipment__nav {
+    display: flex;
+    justify-content: space-between;
+}
+.shipment__change {
+    text-decoration: none;
+    margin: 20px 0;
+    font-size: 20px;
+}
+.method__detail, .shipment__detail {
+    margin-left: 20px;
+}
+.method__title, .shipment__title {
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+.method__select, .shipment__desctiption {
+    margin-left: 50px;
+    width: 100px;
+}
+
+.check__panel {
+    width: 40%;
+}
+.check__table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    margin-bottom: 40px;
+}
+
+.table__head {
+    font-weight: lighter;
+}
+.purchase__button--submit {
+    background: #ff5555;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+}

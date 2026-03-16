@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MylistController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -65,7 +66,8 @@ Route::middleware('auth')->group(function () {
         ->name('items.comments.store');
 });
 
+
 Route::middleware('auth')->group(function() {
-    Route::get('/purchase/{item}', [ItemController::class, ''])
-        ->name('items.purchase');
+    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])
+        ->name('purchase.show');
 });

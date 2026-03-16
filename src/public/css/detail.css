@@ -60,7 +60,6 @@
 
 .purchase__link {
     background: #ff5555;
-    color: #fff;
     width: 100%;
     border: none;
     border-radius: 3px;
@@ -70,6 +69,10 @@
     margin: 10px 0px;
     cursor: pointer;
     text-align: center;
+}
+.purchase__link a {
+    text-decoration: none;
+    color: #fff;
 }
 
 .category__details {

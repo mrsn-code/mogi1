@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="purchase__link">
-            <a src="" >購入手続きへ</a>
+            <a href="{{route('purchase.show', $item)}}" >購入手続きへ</a>
         </div>
         <div class="item__description"><h2>商品説明</h2></div>
         <div class="item__description-detail">{{$item->description}}</div>
