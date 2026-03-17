@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MylistController;
+use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 
@@ -27,6 +28,16 @@ Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
+});
+
+
+Route::middleware('auth')->group(function () {
     Route::get('/?tab=mylist', [MyListController::class, 'index'])->name('mylist.index');
 });
 
@@ -34,9 +45,9 @@ Route::get('/register', [AuthController::class, 'register']);
 // Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/mypage', [ItemController::class, 'mypage'])->name('mypage');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/mypage', [ItemController::class, 'mypage'])->name('mypage');
+// });
 
 // Route::get('/mypage/profile', [ItemController::class, 'profile'])->middleware('auth');
 // Route::get('/mypage/profile', function () {

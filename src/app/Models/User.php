@@ -42,11 +42,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function items() {
+        return $this->hasMany(Item::class);
+    }
+
     public function likedItems() {
         return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
     }
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function sellingItems() {
+        return $this->hasMany(Item::class, 'user_id');
+    }
+
+    public function purchasedItems() {
+        return $this->hasMany(Item::class, 'buyer_id');
     }
 }

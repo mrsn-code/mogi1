@@ -9,7 +9,14 @@ class Item extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'item_img', 'item_name', 'brand_name', 'description', 'condition', 'price',
+        'user_id',
+        'buyer_id',
+        'item_img',
+        'item_name',
+        'brand_name',
+        'description',
+        'condition',
+        'price',
     ];
     public const CONDITIONS = [
         'excellent' => '良好',
@@ -20,6 +27,10 @@ class Item extends Model
 
     public function getConditionLabelAttribute() {
         return self::CONDITIONS[$this->condition] ?? '';
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
     public function likedUsers() {
@@ -39,5 +50,13 @@ class Item extends Model
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function seller() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function buyer() {
+        return $this->belongsTo(User::class, 'buyer_id');
     }
 }

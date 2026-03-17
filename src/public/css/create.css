@@ -1,0 +1,41 @@
+.page__wrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+.page__heading {
+    text-align: center;
+}
+.category__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.category__tab {
+    position: relative;
+}
+.category__checkbox {
+    display: none;
+}
+.category__label {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid #ff6b6b;
+    border-radius: 9999px;
+    color: #ff6b6b;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    transition: 0.2s;
+    user-select: none;
+}
+.category__checkbox:checked + .category__label {
+    background-color: #ff6b6b;
+    color: #fff;
+    border-color: #ff6b6b;
+}
+
+.descrption--group {
+    display: flex;
+    flex-direction: column;
+}
