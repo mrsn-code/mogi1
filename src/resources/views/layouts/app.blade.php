@@ -25,10 +25,10 @@
           </li>
           @endguest
           @auth
-          <li class="header-nav__item">
-            <form class="header-nav__link" action="/logout" method="post">
+          <li>
+            <form action="/logout" method="post">
               @csrf
-              <button type="submit">ログアウト</button>
+              <button class="header__logout--button" type="submit">ログアウト</button>
             </form>
           </li>
           @endauth

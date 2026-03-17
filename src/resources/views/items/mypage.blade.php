@@ -28,7 +28,7 @@
     @forelse($items as $item)
     <a class="items__group" href="{{route('items.show', $item)}}">
         <div class="items__img">
-            <img src="{{asset($item->item_img)}}">
+            <img src="{{asset('storage/' . $item->item_img)}}">
         </div>
         <div class="items__caption">{{$item->item_name}}</div>
     </a>

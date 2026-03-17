@@ -30,7 +30,7 @@ class ItemsTableSeeder extends Seeder
         $categoryMap = Category::pluck('id', 'name');
         $item1 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Armani+Mens+Clock.jpg',
+            'item_img' => 'items/Armani+Mens+Clock.jpg',
             'item_name' => '腕時計',
             'brand_name' => 'Rolax',
             'description' => 'スタイリッシュなデザインのメンズ腕時計',
@@ -39,7 +39,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item2 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/HDD+Hard+Disk.jpg',
+            'item_img' => 'items/HDD+Hard+Disk.jpg',
             'item_name' => 'HDD',
             'brand_name' => '西芝',
             'description' => '高速で信頼性の高いハードディスク',
@@ -48,7 +48,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item3 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/iLoveIMG+d.jpg',
+            'item_img' => 'items/iLoveIMG+d.jpg',
             'item_name' => '玉ねぎ3束',
             'brand_name' => 'なし',
             'description' => '新鮮な玉ねぎ3束のセット',
@@ -57,7 +57,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item4 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Leather+Shoes+Product+Photo.jpg',
+            'item_img' => 'items/Leather+Shoes+Product+Photo.jpg',
             'item_name' => '革靴',
             'brand_name' => '',
             'description' => 'クラシックなデザインの革靴',
@@ -66,7 +66,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item5 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Living+Room+Laptop.jpg',
+            'item_img' => 'items/Living+Room+Laptop.jpg',
             'item_name' => 'ノートPC',
             'brand_name' => '',
             'description' => '高性能なノートパソコン',
@@ -75,7 +75,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item6 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Music+Mic+4632231.jpg',
+            'item_img' => 'items/Music+Mic+4632231.jpg',
             'item_name' => 'マイク',
             'brand_name' => 'なし',
             'description' => '高音質のレコーディング用マイク',
@@ -84,7 +84,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item7 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Purse+fashion+pocket.jpg',
+            'item_img' => 'items/Purse+fashion+pocket.jpg',
             'item_name' => 'ショルダーバッグ',
             'brand_name' => '',
             'description' => 'おしゃれなショルダーバッグ',
@@ -93,7 +93,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item8 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Tumbler+souvenir.jpg',
+            'item_img' => 'items/Tumbler+souvenir.jpg',
             'item_name' => 'タンブラー',
             'brand_name' => 'なし',
             'description' => '使いやすいタンブラー',
@@ -102,7 +102,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item9 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/Waitress+with+Coffee+Grinder.jpg',
+            'item_img' => 'items/Waitress+with+Coffee+Grinder.jpg',
             'item_name' => 'コーヒーミル',
             'brand_name' => 'Starbacks',
             'description' => '手動のコーヒーミル',
@@ -111,7 +111,7 @@ class ItemsTableSeeder extends Seeder
             ]);
         $item10 = Item::create([
             'user_id' => $user->id,
-            'item_img' => 'images/外出メイクアップセット.jpg',
+            'item_img' => 'items/外出メイクアップセット.jpg',
             'item_name' => 'メイクセット',
             'brand_name' => '',
             'description' => '便利なメイクアップセット',

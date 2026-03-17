@@ -12,11 +12,19 @@
 .header__logo img {
   height: 30px;
 }
+.header__search {
+  margin-left: 20px;
+  width: 100%;
+  max-width: 500px;
+}
 .header__search form{
   height: 30px;
+  width: 100%;
+  max-width: 500px;
 }
 .header__search input {
   height: 100%;
+  width: 100%;
   max-width: 500px;
   padding: 10px;
 }
@@ -38,6 +46,15 @@ li.header-nav__item:nth-of-type(3) {
 }
 .header-nav__link {
   text-decoration: none;
+  color: #fff;
+}
+.header__logout--button {
+  height: 100%;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: #000;
   color: #fff;
 }
 

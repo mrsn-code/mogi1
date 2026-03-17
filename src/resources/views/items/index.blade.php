@@ -12,15 +12,7 @@
 <div class="items__wrapper">
     @forelse($items as $item)
     <a class="items__group" href="{{route('items.show', $item)}}">
-        @if ($item->item_img)
-            <img
-                class="items__img"
-                src="{{ asset('storage/' . $item->item_img) }}"
-            >
-        @endif
-        <div class="items__img">
-            <img src="{{asset($item->item_img)}}">
-        </div>
+        <img class="items__img" src="{{asset('storage/' . $item->item_img)}}">
         <div class="items__caption">{{$item->item_name}}</div>
     </a>
     @empty

@@ -10,14 +10,30 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
+    // public function index(Request $request) {
+    //     $tab = $request->query('tab');
+
+    //     $query = Item::query()->latest();
+    //     if (Auth::check()) {
+    //         $query->where('user_id', '!=', Auth::id());
+    //         }
+    //     $items = $query->get();
+
+    //     if ($tab === 'mylist' && !Auth::check()) {
+    //         return redirect()->route('login');
+    //     }
+
+    //     if ($tab === 'mylist' && Auth::check()) {
+    //         $items = Auth::user()->likedItems()->latest()->get();
+    //     } else {
+    //         $items = Item::latest()->get();
+    //     }
+        
+
+    //     return view('items.index', compact('items', 'tab'));
+    // }
     public function index(Request $request) {
         $tab = $request->query('tab');
-
-        if (Auth::check()) {
-            $query = Item::query()->latest();
-            $query->where('user_id', '!=', Auth::id());
-            $items = $query->get();
-        }
 
         if ($tab === 'mylist' && !Auth::check()) {
             return redirect()->route('login');
@@ -26,9 +42,14 @@ class ItemController extends Controller
         if ($tab === 'mylist' && Auth::check()) {
             $items = Auth::user()->likedItems()->latest()->get();
         } else {
-            $items = Item::latest()->get();
+            $query = Item::query()->latest();
+
+            if (Auth::check()) {
+                $query->where('user_id', '!=', Auth::id());
+            }
+
+            $items = $query->get();
         }
-        
 
         return view('items.index', compact('items', 'tab'));
     }

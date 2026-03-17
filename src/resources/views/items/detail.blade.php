@@ -6,7 +6,7 @@
 @section('content')
 <div class="page__wrapper">
     <div class="image__wrapper">
-        <img src="{{asset($item->item_img)}}">
+        <img src="{{asset('storage/' . $item->item_img)}}">
     </div>
     <div class="caption__wrapper">
         <div class="item__name"><h1>{{$item->item_name}}</h1></div>

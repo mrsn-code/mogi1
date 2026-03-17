@@ -8,7 +8,7 @@
     <div class="config__panel">
         <div class="item__detail">
             <div class="item__img">
-                <img src="{{asset($item->item_img)}}">
+                <img src="{{asset('storage/' . $item->item_img)}}">
             </div>
             <div class="item__description">
                 <div class="item__name">{{$item->item_name}}</div>

@@ -10,13 +10,15 @@
     </div>
     <form class="form" action="{{route('items.store')}}" method="post" enctype="multipart/form-data">
         @csrf
+        <div class="img__title">商品画像</div>
         <div class="img__wrapper">
-            <div class="img__title">商品画像</div>
-            <input class="img__select" type="file" name="item_img" id="item_img">画像を選択する</input>
+            <label class="file__button">
+                <input class="img__select" type="file" name="item_img" id="item_img">画像を選択する</input>
+            </label>
         </div>
         <div class="item__detail">
             <h2>商品の詳細</h2>
-            <hr>
+            <hr class="hr__line">
             <div class="category__wrapper">
                 <div class="category__title">カテゴリー</div>
                 <div class="category__group">
@@ -52,6 +54,7 @@
         </div>
         <div class="item__description">
             <h2>商品名と説明</h2>
+            <hr class="hr__line">
             <div class="descrption--group">
                 <label class="description--title" for="item_name">商品名</label>
                 <input type="text" name="item_name" id="item_name" value="{{ old('item_name') }}">
