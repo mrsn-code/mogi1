@@ -5,8 +5,10 @@
 
 @section('content')
 <div class="status__wrapper">
-    <a class="status__button {{ $tab !== 'mylist' ? 'active' : '' }}" href="/">おすすめ</a>
-    <a class="status__button {{ $tab === 'mylist' ? 'active' : '' }}" href="/?tab=mylist">マイリスト</a>
+    <a class="status__button {{ $tab !== 'mylist' ? 'active' : '' }}" href="/?tab=index&keyword={{request('keyword')}}">おすすめ</a>
+    <a class="status__button {{ $tab === 'mylist' ? 'active' : '' }}" href="/?tab=mylist&keyword={{request('keyword')}}">マイリスト</a>
+    <!-- <a class="status__button {{ $tab !== 'mylist' ? 'active' : '' }}" href="/">おすすめ</a>
+    <a class="status__button {{ $tab === 'mylist' ? 'active' : '' }}" href="/?tab=mylist">マイリスト</a> -->
 </div>
 <hr class="hr-line">
 <div class="items__wrapper">

@@ -13,8 +13,9 @@
     <div class="header__inner">
       <a class="header__logo" href="/"><img src="{{asset('images/COACHTECHヘッダーロゴ.png')}}"></a>
       <div class="header__search">
-        <form>
-          <input type="text" placeholder="なにをお探しですか？">
+        <form action="{{route('items.index')}}" method="get">
+          <input type="text" name="keyword" value="{{request('keyword')}}" placeholder="なにをお探しですか？">
+          <input type="hidden" name="tab" value="{{request('tab', 'index')}}">
         </form>
       </div>
       <nav>
@@ -45,5 +46,6 @@
   <main>
     @yield('content')
   </main>
+  @yield('scripts')
 </body>
 </html>

@@ -10,37 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
-    // public function index(Request $request) {
-    //     $tab = $request->query('tab');
 
-    //     $query = Item::query()->latest();
-    //     if (Auth::check()) {
-    //         $query->where('user_id', '!=', Auth::id());
-    //         }
-    //     $items = $query->get();
-
-    //     if ($tab === 'mylist' && !Auth::check()) {
-    //         return redirect()->route('login');
-    //     }
-
-    //     if ($tab === 'mylist' && Auth::check()) {
-    //         $items = Auth::user()->likedItems()->latest()->get();
-    //     } else {
-    //         $items = Item::latest()->get();
-    //     }
-        
-
-    //     return view('items.index', compact('items', 'tab'));
-    // }
     public function index(Request $request) {
-        $tab = $request->query('tab');
+        $tab = $request->query('tab', 'index');
+        $keyword = $request->query('keyword');
 
-        if ($tab === 'mylist' && !Auth::check()) {
-            return redirect()->route('login');
-        }
+        if ($tab === 'mylist') {
+            if (!Auth::check()) {
+                return redirect()->route('login');
+            }
 
-        if ($tab === 'mylist' && Auth::check()) {
-            $items = Auth::user()->likedItems()->latest()->get();
+            $query = Auth::user()->likedItems()->latest();
+
+            if (!empty($keyword)) {
+                $query->where('item_name', 'like', '%' . $keyword . '%');
+            }
+
+            $items = $query->get();
         } else {
             $query = Item::query()->latest();
 
@@ -48,16 +34,15 @@ class ItemController extends Controller
                 $query->where('user_id', '!=', Auth::id());
             }
 
+            if (!empty($keyword)) {
+                $query->where('item_name', 'like', '%' . $keyword . '%');
+            }
+
             $items = $query->get();
         }
 
-        return view('items.index', compact('items', 'tab'));
+        return view('items.index', compact('items', 'tab', 'keyword'));
     }
-
-    // public function mypage() {
-    //     $user = Auth::user();
-    //     return view('items.mypage', compact('user'));
-    // }
 
     public function show(Item $item)
     {

@@ -19,10 +19,10 @@
         <div class="method__detail">
             <div class="method__title">支払い方法</div>
             <div class="method__select">
-                <select>
+                <select name="payment-method" id="payment-select">
                     <option value="" selected disabled>選択してください</option>
-                    <option value="">コンビニ払い</option>
-                    <option value="">カード支払い</option>
+                    <option value="store">コンビニ払い</option>
+                    <option value="card">カード支払い</option>
                 </select>
             </div>
         </div>
@@ -40,13 +40,15 @@
     </div>
     <div class="check__panel">
         <table class="check__table">
-            <tr class="table__row">
+            <tr>
                 <th class="table__head">商品代金</th>
-                <td>¥ {{$item->price}}</td>
+                <td class="table__data">¥ {{$item->price}}</td>
             </tr>
             <tr>
                 <th class="table__head">支払い方法</th>
-                <td></td>
+                <td class="table__data">
+                    <div id="selected-payment">未選択</div>
+                </td>
             </tr>
         </table>
         <div class="purchase__button">
@@ -54,4 +56,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{asset('js/payment.js')}}"></script>
 @endsection

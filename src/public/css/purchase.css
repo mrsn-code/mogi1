@@ -57,10 +57,13 @@
     border-collapse: collapse;
     border: 1px solid #000;
     margin-bottom: 40px;
+    padding: 50px;
 }
 
-.table__head {
+.table__head, .table__data{
     font-weight: lighter;
+    padding: 20px;
+    border-bottom: 1px solid #000;
 }
 .purchase__button--submit {
     background: #ff5555;
