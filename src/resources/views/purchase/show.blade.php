@@ -19,7 +19,7 @@
         <div class="method__detail">
             <div class="method__title">支払い方法</div>
             <div class="method__select">
-                <select name="payment-method" id="payment-select">
+                <select name="payment_method" id="payment-select">
                     <option value="" selected disabled>選択してください</option>
                     <option value="store">コンビニ払い</option>
                     <option value="card">カード支払い</option>
@@ -62,6 +62,9 @@
         <div class="purchase__button">
             <button class="purchase__button--submit">購入する</button>
         </div>
+        @error('payment_method')
+        <p style="color:red;">{{ $message }}</p>
+        @enderror
     </div>
 </div>
 @endsection

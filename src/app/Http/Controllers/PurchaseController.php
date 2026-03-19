@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseReqeust;
 use App\Models\Item;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class PurchaseController extends Controller
 
         return view('purchase.show', compact('item', 'user', 'shippingAddress'));
     }
-    public function store(Item $item) {
+    public function store(Item $item, PurchaseReqeust $request) {
+        $payment = $request->payment_method;
         if ($item->purchase) {
             return redirect()->route('items.show', $item)->with('error', 'この商品はすでに購入されています。');
         }

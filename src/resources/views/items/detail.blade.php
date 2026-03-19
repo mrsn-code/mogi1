@@ -73,15 +73,15 @@
                 <div class="comment__user--icon"><img src=""></div>
                 <div class="comment__user--name">{{$comment->user->name}}</div>
             </div>
-            <div class="comment__content">{!! nl2br(e($comment->body)) !!}</div>
+            <div class="comment__content">{!! nl2br(e($comment->comment)) !!}</div>
         </div>
         @endforeach
 
         <form class="comment__form" action="{{ route('items.comments.store', $item) }}" method="post">
             @csrf
             <div class="comment__title">商品へのコメント</div>
-            <textarea class="comment__area" name="body" rows="8"></textarea>
-            @error('body')
+            <textarea class="comment__area" name="comment" rows="8"></textarea>
+            @error('comment')
                 <div style="color: red;">{{ $message }}</div>
             @enderror
             <button class="comment__button" type="submit">コメントを送信する</button>

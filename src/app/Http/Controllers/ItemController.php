@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -63,19 +64,9 @@ class ItemController extends Controller
     }
 
     #出品画面の保存
-    public function store(Request $request) {
-        $validated = $request->validate([
-        'item_name' => ['nullable', 'required', 'string', 'max:255'],
-        'brand_name' => ['nullable', 'string', 'max:255'],
-        'description' => ['required', 'string'],
-        'condition' => ['required', 'string'],
-        'price' => ['required', 'integer', 'min:1'],
-        'item_img' => ['nullable', 'image', 'max:2048'],
-        'categories' => ['required', 'array'],
-        'categories.*' => ['integer', 'exists:categories,id'],
-        ]);
+    public function store(ExhibitionRequest $request) {
 
-        $imagePath = null;
+        $validated = $request->validated();
 
         if ($request->hasFile('item_img')) {
             $imagePath = $request->file('item_img')->store('items', 'public');
@@ -84,11 +75,10 @@ class ItemController extends Controller
         $item = Item::create([
             'user_id' => Auth::id(),
             'item_name' => $validated['item_name'],
-            'brand_name' => $validated['brand_name'] ?? null,
             'description' => $validated['description'],
+            'item_img' => $imagePath,
             'condition' => $validated['condition'],
             'price' => $validated['price'],
-            'item_img' => $imagePath ?? null,
         ]);
 
     

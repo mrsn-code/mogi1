@@ -6,9 +6,7 @@
 @section('content')
 <div class="user__info">
     @auth
-    <div class="user__img">
-        <img src="">
-    </div>
+    <img class="user__img" src="{{asset('storage/' . $user->icon_img)}}">
     <div class="user__name">{{$user->name}}</div>
     @endauth
     <div class="profile__edit">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,17 +26,13 @@ class ShippingAddressController extends Controller
         return view('purchase.address_edit', compact('item', 'shippingAddress'));
     }
 
-    public function update(Request $request, Item $item)
+    public function update(AddressRequest $request, Item $item)
     {
         if ($item->purchase) {
             return redirect()->route('items.show', $item)->with('error', 'この商品はすでに購入されています。');
         }
 
-        $validated = $request->validate([
-            'zipcode' => ['required', 'string', 'max:20'],
-            'address'     => ['required', 'string', 'max:255'],
-            'building'    => ['nullable', 'string', 'max:255'],
-        ]);
+        $validated = $request->validated();
 
         session([
             'purchase_shipping' => [

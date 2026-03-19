@@ -13,12 +13,17 @@
         <div class="alert__success">{{session('success')}}</div>
     @endif
 
-    <form class="form" action="{{route('profile.update')}}" method="post">
+    <form class="form" action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="img__group">
-            <img class="user__img" src="">
-            <button class="select__button">画像を選択する</button>
+            <img class="user__img" id="preview" src="{{ $user->icon_img ? asset('storage/' . $user->icon_img) : '' }}">
+            <label class="file__button">
+                <input class="img__select" type="file" name="icon_img" id="icon_img">画像を選択する</input>
+            </label>
+            @error('icon_img')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -29,6 +34,9 @@
                     <input type="text" name="name" value="{{old('name', $user->name)}}">
                 </div>
             </div>
+            @error('name')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -39,6 +47,9 @@
                     <input type="text" name="zipcode" value="{{old('zipcode', $user->zipcode)}}">
                 </div>
             </div>
+            @error('zipcode')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -49,6 +60,9 @@
                     <input type="text" name="address" value="{{old('address', $user->address)}}">
                 </div>
             </div>
+            @error('address')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -65,5 +79,7 @@
         </div>
     </form>
 </div>
-
+@endsection
+@section('scripts')
+<script src="{{asset('js/change_img.js')}}"></script>
 @endsection

@@ -16,6 +16,9 @@
                 <input class="img__select" type="file" name="item_img" id="item_img">画像を選択する</input>
             </label>
         </div>
+        @error('item_img')
+            <p style="color:red;">{{ $message }}</p>
+        @enderror
         <div class="item__detail">
             <h2>商品の詳細</h2>
             <hr class="hr__line">
@@ -39,6 +42,9 @@
                     @endforeach
                 </div>
             </div>
+            @error('categories')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
             <div class="condition__wrapper">
                 <div class="condition__title">商品の状態</div>
                 <select class="condition__selector" name="condition" id="condition">
@@ -49,8 +55,10 @@
                     </option>
                     @endforeach
                 </select>
-                
             </div>
+            @error('condition')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
         <div class="item__description">
             <h2>商品名と説明</h2>
@@ -59,6 +67,9 @@
                 <label class="description--title" for="item_name">商品名</label>
                 <input type="text" name="item_name" id="item_name" value="{{ old('item_name') }}">
             </div>
+            @error('item_name')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
             <div class="descrption--group">
                 <label class="description--title" for="brand_name">ブランド名</label>
                 <input type="text" name="brand_name" id="brand_name" value="{{ old('brand_name') }}">
@@ -67,23 +78,20 @@
                 <label class="description--title" for="description">商品の説明</label>
                 <input type="text" name="description" id="description" value="{{ old('description') }}">
             </div>
+            @error('description')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
             <div class="descrption--group">
                 <label class="description--title" for="price">販売価格</label>
                 <input type="number" name="price" id="price" value="{{ old('price') }}">
             </div>
+            @error('price')
+                <p style="color:red;">{{ $message }}</p>
+            @enderror
         </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit">出品する</button>
         </div>
     </form>
 </div>
-
-@if ($errors->any())
-<ul>
-@foreach ($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-@endif
-
 @endsection
