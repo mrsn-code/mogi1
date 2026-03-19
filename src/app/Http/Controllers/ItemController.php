@@ -14,36 +14,31 @@ class ItemController extends Controller
 
     public function index(Request $request) {
         $tab = $request->query('tab', 'index');
-        $keyword = $request->query('keyword');
+        $keyword = $request->query('keyword', '');
 
-        if ($tab === 'mylist') {
-            if (!Auth::check()) {
-                return redirect()->route('login');
-            }
+        if ($tab === 'mylist' && !Auth::check()) {
+            return redirect()->route('login');
+        }
 
+        if ($tab === 'mylist' && Auth::check()) {
             $query = Auth::user()->likedItems()->latest();
-
-            if (!empty($keyword)) {
-                $query->where('item_name', 'like', '%' . $keyword . '%');
-            }
-
-            $items = $query->get();
         } else {
             $query = Item::query()->latest();
 
             if (Auth::check()) {
                 $query->where('user_id', '!=', Auth::id());
             }
-
-            if (!empty($keyword)) {
-                $query->where('item_name', 'like', '%' . $keyword . '%');
-            }
-
-            $items = $query->get();
         }
+
+        if ($keyword !== '') {
+            $query->where('item_name', 'like', '%' . $keyword . '%');
+        }
+
+        $items = $query->get();
 
         return view('items.index', compact('items', 'tab', 'keyword'));
     }
+    
 
     public function show(Item $item)
     {
@@ -75,6 +70,7 @@ class ItemController extends Controller
         $item = Item::create([
             'user_id' => Auth::id(),
             'item_name' => $validated['item_name'],
+            'brand_name' => $validated['brand_name'],
             'description' => $validated['description'],
             'item_img' => $imagePath,
             'condition' => $validated['condition'],

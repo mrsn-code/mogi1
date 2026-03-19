@@ -26,6 +26,7 @@ class AddressRequest extends FormRequest
         return [
             'zipcode' => ['required', 'regex:/^\d{3}-\d{4}$/'],
             'address' => ['required'],
+            'building' => ['nullable', 'string'],
         ];
     }
     public function messages() {

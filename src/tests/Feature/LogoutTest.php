@@ -9,12 +9,13 @@ use Tests\TestCase;
 
 class LogoutTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_logout_success() {
+    public function test_ログアウトができる() {
             $user = User::factory()->create();
             $this->actingAs($user);
             $this->assertAuthenticated();

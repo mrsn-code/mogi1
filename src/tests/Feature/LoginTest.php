@@ -11,12 +11,13 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_email_request() {
+    public function test_メールアドレスが入力されていない場合、バリデーションメッセージが表示される() {
         $this->get('/login')->assertStatus(200);
 
         $response = $this->post('/login', [
@@ -29,7 +30,7 @@ class LoginTest extends TestCase
         ]);
         $this->assertGuest();
     }
-    public function test_password_request() {
+    public function test_パスワードが入力されていない場合、バリデーションメッセージが表示される() {
         $this->get('/login')->assertStatus(200);
 
         $response = $this->post('/login', [
@@ -42,7 +43,7 @@ class LoginTest extends TestCase
         ]);
         $this->assertGuest();
     }
-    public function test_false_user() {
+    public function test_入力情報が間違っている場合、バリデーションメッセージが表示される() {
         $this->get('/login')->assertStatus(200);
 
         $response = $this->post('/login', [
@@ -55,7 +56,7 @@ class LoginTest extends TestCase
         ]);
         $this->assertGuest();
     }
-    public function test_login_success() {
+    public function test_正しい情報が入力された場合、ログイン処理が実行される() {
         $user = User::factory()->create();
         $this->get('/login')->assertStatus(200);
         $response = $this->post('/login', [

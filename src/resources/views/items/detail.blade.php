@@ -7,6 +7,11 @@
 <div class="page__wrapper">
     <div class="image__wrapper">
         <img src="{{asset('storage/' . $item->item_img)}}">
+        @auth
+            @if ($item->buyer_id === Auth::id())
+                <div class="sold-label">SOLD</div>
+            @endif
+        @endauth
     </div>
     <div class="caption__wrapper">
         <div class="item__name"><h1>{{$item->item_name}}</h1></div>

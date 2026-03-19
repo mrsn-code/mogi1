@@ -13,10 +13,14 @@
     <div class="header__inner">
       <a class="header__logo" href="/"><img src="{{asset('images/COACHTECHヘッダーロゴ.png')}}"></a>
       <div class="header__search">
-        <form action="{{route('items.index')}}" method="get">
+        <form action="{{ route('items.index') }}" method="get">
+            <input type="text" name="keyword" value="{{ $keyword ?? '' }}" placeholder="なにをお探しですか？">
+            <input type="hidden" name="tab" value="{{ $tab ?? 'index' }}">
+        </form>
+        <!-- <form action="{{route('items.index')}}" method="get">
           <input type="text" name="keyword" value="{{request('keyword')}}" placeholder="なにをお探しですか？">
           <input type="hidden" name="tab" value="{{request('tab', 'index')}}">
-        </form>
+        </form> -->
       </div>
       <nav>
         <ul class="header-nav">

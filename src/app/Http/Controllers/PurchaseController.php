@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PurchaseReqeust;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
+use Stripe\Webhook;
 
 class PurchaseController extends Controller
 {
@@ -22,33 +25,60 @@ class PurchaseController extends Controller
 
         return view('purchase.show', compact('item', 'user', 'shippingAddress'));
     }
-    public function store(Item $item, PurchaseReqeust $request) {
-        $payment = $request->payment_method;
-        if ($item->purchase) {
-            return redirect()->route('items.show', $item)->with('error', 'この商品はすでに購入されています。');
+    public function checkout(Item $item, PurchaseRequest $request) {
+        $validated = $request->validated();
+        $user = $request->user();
+
+        $zipCode = $validated['zipcode'] ?? $user->zipcode ?? '';
+        $address = $validated['address'] ?? $user->address ?? '';
+        $building = $validated['building'] ?? $user->building ?? '';
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $paymentMethodTypes = match ($validated['payment_method']) {
+            'card' => ['card'],
+            'konbini' => ['konbini'],
+        };
+
+        $sessionParams = [
+            'mode' => 'payment',
+            'payment_method_types' => $paymentMethodTypes,
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'unit_amount' => (int) $item->price,
+                    'product_data' => [
+                        'name' => (string) $item->item_name,
+                    ],
+                ],
+                'quantity' => 1,
+            ]],
+            'metadata' => [
+                'item_id' => (string) $item->id,
+                'user_id' => (string) auth()->id(),
+                'selected_payment_method' => (string) $validated['payment_method'],
+                'zipcode' => (string) ($zipCode ?? ''),
+                'address' => (string) ($address ?? ''),
+                'building' => (string) ($building ?? ''),
+            ],
+            'success_url' => config('app.url') . '/purchase/success?session_id={CHECKOUT_SESSION_ID}',
+        ];
+
+        if ($validated['payment_method'] === 'konbini') {
+            $sessionParams['payment_method_options'] = [
+                'konbini' => [
+                    'expires_after_days' => 3,
+                ],
+            ];
         }
 
-        $user = Auth::user();
+        $session = Session::create($sessionParams);
 
-        $shippingZipCode = session('purchase_shipping.zipcode', $user->zipcode);
-        $shippingAddress    = session('purchase_shipping.address', $user->address);
-        $shippingBuilding   = session('purchase_shipping.building', $user->building);
+        return redirect($session->url);
+    }
 
-        if (!$shippingZipCode || !$shippingAddress) {
-            return redirect()->route('purchase.show', $item)->with('error', '配送先を入力してください。');
-        }
 
-        Purchase::create([
-            'user_id' => $user->id,
-            'item_id' => $item->id,
-            'shipping_zipcode' => $shippingZipCode,
-            'shipping_address' => $shippingAddress,
-            'shipping_building' => $shippingBuilding,
-        ]);
-
-        // 購入後は一時保存した配送先を削除
-        session()->forget('purchase_shipping');
-
-        return redirect()->route('items.show', $item)->with('success', '商品を購入しました。');
+    public function success() {
+        return view('purchase.success');
     }
 }

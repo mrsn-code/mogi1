@@ -69,13 +69,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
-    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
 
     Route::get('/purchase/address/{item}', [ShippingAddressController::class, 'edit'])->name('purchase.address.edit');
     Route::post('/purchase/address/{item}', [ShippingAddressController::class, 'update'])->name('purchase.address.update');
+
+    Route::post('/purchase/{item}/checkout', [PurchaseController::class, 'checkout'])->name('purchase.checkout');
 });
+
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');

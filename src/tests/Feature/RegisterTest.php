@@ -8,12 +8,13 @@ use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_name_request() {
+    public function test_名前が入力されていない場合、バリデーションメッセージが表示される() {
         $this->get('/register')->assertStatus(200);
 
         $response = $this->post('/register', [
@@ -27,7 +28,7 @@ class RegisterTest extends TestCase
             'name' => 'お名前を入力してください',
         ]);
     }
-    public function test_email_request() {
+    public function test_メールアドレスが入力されていない場合、バリデーションメッセージが表示される() {
         $this->get('/register')->assertStatus(200);
 
         $response = $this->post('/register', [
@@ -41,7 +42,7 @@ class RegisterTest extends TestCase
             'email' => 'メールアドレスを入力してください',
         ]);
     }
-    public function test_password_request() {
+    public function test_パスワードが入力されていない場合、バリデーションメッセージが表示される() {
         $this->get('/register')->assertStatus(200);
 
         $response = $this->post('/register', [
@@ -55,7 +56,7 @@ class RegisterTest extends TestCase
             'password' => 'パスワードを入力してください',
         ]);
     }
-    public function test_password_min_request() {
+    public function test_パスワードが7文字以下の場合、バリデーションメッセージが表示される() {
         $this->get('/register')->assertStatus(200);
 
         $response = $this->post('/register', [
@@ -69,7 +70,7 @@ class RegisterTest extends TestCase
             'password' => 'パスワードは8文字以上で入力してください',
         ]);
     }
-    public function test_password_confirmation_request() {
+    public function test_パスワードが確認用パスワードと一致しない場合、バリデーションメッセージが表示される() {
         $this->get('/register')->assertStatus(200);
 
         $response = $this->post('/register', [
@@ -83,7 +84,7 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'パスワードと一致しません',
         ]);
     }
-    public function test_registration_success() {
+    public function test_全ての項目が入力されている場合、会員情報が登録され、プロフィール設定画面に遷移される() {
         $this->get('/register')->assertStatus(200);
 
         $response = $this->post('/register', [
