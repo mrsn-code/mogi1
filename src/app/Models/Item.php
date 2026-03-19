@@ -59,4 +59,7 @@ class Item extends Model
     public function buyer() {
         return $this->belongsTo(User::class, 'buyer_id');
     }
+    public function purchase() {
+    return $this->hasOne(Purchase::class);
+    }
 }

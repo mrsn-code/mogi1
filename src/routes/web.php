@@ -8,6 +8,7 @@ use App\Http\Controllers\MylistController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ShippingAddressController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -69,8 +70,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])
-        ->name('purchase.show');
+    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
+
+    Route::get('/purchase/address/{item}', [ShippingAddressController::class, 'edit'])->name('purchase.address.edit');
+    Route::post('/purchase/address/{item}', [ShippingAddressController::class, 'update'])->name('purchase.address.update');
 });
 
 Route::get('/email/verify', function () {

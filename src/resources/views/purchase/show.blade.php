@@ -30,11 +30,19 @@
         <div class="shipment__detail">
             <div class="shipment__nav">
                 <div class="shipment__title">配送先</div>
-                <a class="shipment__change" href="">変更する</a>
+                <a class="shipment__change" href="{{route('purchase.address.edit', $item)}}">変更する</a>
             </div>
             <div class="shipment__desctiption">
-                <div>〒 {{$user->zipcode}}</div>
-                <div>{{$user->address}} {{$item->building}}</div>
+                @if($shippingAddress['zipcode'] || $shippingAddress['address'])
+                    <div>〒{{ $shippingAddress['zipcode'] }}</div>
+                    <div>{{ $shippingAddress['address'] }}</div>
+                    @if($shippingAddress['building'])
+                        <div>{{ $shippingAddress['building'] }}</div>
+                    @endif
+                 @else
+                    <div>〒 {{$user->zipcode}}</div>
+                    <div>{{$user->address}} {{$user->building}}</div>
+                @endif
             </div>
         </div>
     </div>
