@@ -14,10 +14,10 @@
     </div>
 </div>
 <div class="status__wrapper">
-    <a class="status__button {{ $tab === 'sell' ? 'active' : '' }}" href="{{ route('mypage', ['tab' => 'sell']) }}">
+    <a class="status__button {{$tab === 'sell' ? 'active' : '' }}" href="{{route('mypage', ['tab' => 'sell'])}}">
         出品した商品
     </a>
-    <a class="status__button {{ $tab === 'buy' ? 'active' : '' }}" href="{{ route('mypage', ['tab' => 'buy']) }}">
+    <a class="status__button {{$tab === 'buy' ? 'active' : '' }}" href="{{route('mypage', ['tab' => 'buy'])}}">
         購入した商品
     </a>
 </div>

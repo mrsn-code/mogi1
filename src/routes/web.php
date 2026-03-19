@@ -40,6 +40,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
 });
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -47,15 +51,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/register', [AuthController::class, 'register']);
-// Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
-});
 
 Route::get('/dashboard', [ItemController::class, 'index'])->middleware(['auth', 'verified']);
 
