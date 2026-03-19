@@ -21,7 +21,9 @@
             </div>
             <div class="form__error">
                 @error('name')
-                {{$message}}
+                <p style="color: red;">
+                    {{$message}}
+                </p>
                 @enderror
             </div>
         </div>
@@ -36,7 +38,9 @@
             </div>
             <div class="form__error">
                 @error('email')
-                {{$message}}
+                <p style="color: red;">
+                    {{$message}}
+                </p>
                 @enderror
             </div>
         </div>
@@ -51,7 +55,9 @@
             </div>
             <div class="form__error">
                 @error('password')
-                {{$message}}
+                <p style="color: red;">
+                    {{$message}}
+                </p>
                 @enderror
             </div>
         </div>
@@ -66,7 +72,9 @@
             </div>
             <div class="form__error">
                 @error('password_confirmation')
-                {{$message}}
+                <p style="color: red;">
+                    {{$message}}
+                </p>
                 @enderror
             </div>
         </div>
